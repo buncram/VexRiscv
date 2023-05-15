@@ -94,9 +94,9 @@ class MmuPlugin(ioRange : UInt => Bool,
         mprv clearWhen(csrService.xretAwayFromMachine)
       }
       val satp = new Area {
-        val mode = RegInit(False)
-        val asid = Reg(Bits(9 bits))
-        val ppn = Reg(UInt(22 bits)) // Bottom 20 bits are used in implementation, but top 2 bits are still stored for OS use.
+        val mode = RegInit(False) init(False)
+        val asid = Reg(Bits(9 bits)) init(0)
+        val ppn = Reg(UInt(22 bits)) init(0) // Bottom 20 bits are used in implementation, but top 2 bits are still stored for OS use.
         if(exportSatp) {
           out(mode, asid, ppn)
         }
